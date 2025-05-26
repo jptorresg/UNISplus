@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Publicación</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+
+    <%- include('partials/header', {
+        linkLeft: '/comunidad?foro=' + foroId,
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        linkRight: '',
+        iconRight: 'fa-solid fa-check',
+        rightFunction: 'submitPostForm()',
+        rightExtraClass: ''
+    }) %>
+
+    <main class="content">
+        <form action="/editPost/<%= post.id %>" method="POST" enctype="multipart/form-data" class="post-form" id="post-form">
+            <textarea name="content" required class="input-text" style="min-height: 150px;"><%= post.content %></textarea>
+        
+            <input type="hidden" name="foroId" value="<%= foroId %>">
+            
+            <% if (post.image) { %>
+                <img src="<%= post.image %>" alt="Imagen del post" style="max-width: 100%; margin-top: 10px;">
+            <% } %>
+        
+            <label for="image-upload" class="image-upload-label">
+                <i class="fa-solid fa-image"></i> Cambiar imagen
+            </label>
+            <input type="file" id="image-upload" name="image" accept="image/*" class="input-file">
+        </form>        
+    </main>
+
+    <%- include('partials/footer.ejs') %>
+
+</body>
+
+<script src="/script.js"></script>
+<script>
+    function submitPostForm() {
+        document.getElementById('post-form').submit();
+    }
+</script>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- incluir header -->
+    <%- include('partials/header', {
+        linkLeft: '',
+        iconLeft: 'fa-solid fa-list',
+        leftFunction: 'openMenu()',
+        leftExtraClass: 'menu-trigger',
+        linkRight: '',
+        iconRight: '',
+        rightFunction: '',
+        rightExtraClass: ''
+    }) %>
+    
+    <main class="content">
+
+        <% if (foroActual) { %>
+            <div class="subheader">
+                <form action="/foros/leave/<%= foroActual.id %>" method="POST" class="exit-form" onclick="return confirm('¿Estás seguro de que deseas salir de este foro?')">
+                    <button type="submit" class="exit-icon-btn" title="Salir del foro">
+                        <i class="fa-solid fa-right-from-bracket exit-icon"></i>
+                    </button>
+                </form>
+                <i class="fa-regular fa-star star-icon"></i>            
+                <div class="subheader-content">
+                    <%
+                    const rutaImagen = foroActual.image.startsWith('/') || foroActual.image.startsWith('http')
+                      ? foroActual.image
+                      : '/images/' + foroActual.image;
+                  %>
+                  <img src="<%= rutaImagen %>" alt="Foro" class="foro-image">
+                    <div>
+                        <h2><%= foroActual.title %></h2>
+                        <p><%= foroActual.description || 'Sin descripción' %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>            
+
+        <a href="/newPost/<%= foroActualId %>" class="newPostBtn">
+            <i class="fa-solid fa-plus"></i>
+        </a>        
+
+        <% if (isAdmin) { %>
+            <a href="/newForo" class="newForoBtn">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        <% } %>
+        
+        <div class="slide-menu" id="slide-menu">
+            <button class="close-btn" id="close-btn">×</button>
+            <ul>
+                <li><a href="/foros">Todos los Foros</a></li>
+                <li>
+                    <a href="#">Foros Populares</a>
+                    <ul>
+                        <% forosPopulares.forEach(foro => { %>
+                            <li>
+                                <a href="/comunidad?foro=<%= foro.id %>">
+                                    <img src="/images/<%= foro.image %>" alt="icono" class="foro-icon">
+                                    <%= foro.title %>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Tus Foros</a>
+                    <ul>
+                        <% tusForos.forEach(foro => { %>
+                            <li>
+                                <a href="/comunidad?foro=<%= foro.id %>">
+                                    <img src="<%= foro.image %>" alt="icono" class="foro-icon">
+                                    <%= foro.title %>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <% posts.forEach(post => { %>
+            <div id="post<%= post.id %>" class="post">
+                <div class="post-header">
+                    <img src="<%= post.id === usuario.id ? usuario.profilePic : post.profilePic %>" alt="Perfil" class="profile-pic">
+                    <div>
+                        <h3 class="username"><%= post.user_name %></h3>
+                        <p class="post-date"><%= post.date %></p>
+                    </div>
+                </div>
+        
+                <p class="post-content">
+                    <%= post.content %>
+                </p>
+        
+                <% if (post.image) { %>
+                    <div class="post-image">
+                        <img src="<%= post.image %>">
+                    </div>
+                <% } %>
+        
+                <div class="post-footer">
+                    <button class="post-btn like-btn">
+                        <i class="<%= post.liked ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
+                        <span class="like-count"><%= post.likes %></span>
+                    </button>
+                    <a href="/post/<%= post.id %>/comments" class="post-btn comment-btn">
+                        <i class="fa-regular fa-comment"></i> 
+                        <span class="comment-count"><%= post.comments %></span>
+                    </a>
+        
+                    <% if (userId && userId === post.user_id) { %>
+                        <a href="/editPost/<%= post.id %>" class="post-btn">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>                        
+                        <a href="/deletePost/<%= post.id %>" class="post-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?')">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    <% } else if (isAdmin) { %>
+                        <a href="/deletePost/<%= post.id %>" class="post-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?')">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        <% }); %>        
+
+    </main>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+<script src="script.js"></script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+
+    <%- include('partials/header', {
+        linkLeft: '/perfil',
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        linkRight: '',
+        iconRight: 'fa-solid fa-check',
+        rightFunction: 'submitEditProfileForm()',
+        rightExtraClass: ''
+    }) %>    
+
+    <main class="content">
+
+        <form 
+            id="edit-profile-form"
+            class="edit-profile-card" 
+            action="/perfil/editar" 
+            method="POST" 
+            enctype="multipart/form-data"
+        >
+            <div 
+                class="background-image"
+                style="background-image: url('<%= user.background_pic ? ('/uploads/' + user.background_pic) : '/images/background_default_image.png' %>');"
+            ></div>
+    
+            <div class="profile-info">
+                <img 
+                    src="<%= user.profile_pic ? ('/uploads/' + user.profile_pic) : '/images/default_profile_image.jpg' %>" 
+                    alt="Foto de perfil" 
+                    class="profile-profile-pic"
+                >
+            </div>
+    
+            <div class="edit-profile-form">
+                <div class="form-group">
+                    <label for="background_pic">Cambiar imagen de fondo</label>
+                    <input type="file" name="background_pic" id="background_pic" accept="image/*">
+                </div>
+    
+                <div class="form-group">
+                    <label for="profile_pic">Cambiar foto de perfil</label>
+                    <input type="file" name="profile_pic" id="profile_pic" accept="image/*">
+                </div>
+    
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-input" value="<%= user.name %>" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" rows="4"><%= user.description %></textarea>
+                </div>
+    
+            </div>
+        </form>
+    
+    </main>    
+
+    <%- include('partials/footer') %>
+
+</body>
+<script>
+    function submitEditProfileForm() {
+        const form = document.getElementById('edit-profile-form');
+        if (form) {
+            form.submit();
+        }
+    }
+</script>    
+<script src="/script.js"></script>
+</html>

@@ -1,0 +1,22 @@
+<header>
+    <div class="logo">UNIS+</div>
+
+    <% leftFunction = leftFunction || ''; %>
+    <% rightFunction = rightFunction || ''; %>
+
+    <% if (typeof linkLeft !== 'undefined' && linkLeft) { %>
+        <a href="<%= linkLeft %>">
+            <i class="iconLeft <%= iconLeft %>"></i>
+        </a>
+    <% } else if (typeof leftFunction !== 'undefined' && leftFunction) { %>
+        <i class="iconLeft <%= iconLeft %> <%= leftExtraClass || '' %>" onclick="<%= leftFunction %>"></i>
+        <% } %>
+
+    <% if (typeof linkRight !== 'undefined' && linkRight) { %>
+        <a href="<%= linkRight %>">
+            <i class="iconRight <%= iconRight %>"></i>
+        </a>
+    <% } else if (typeof rightFunction !== 'undefined' && rightFunction) { %>
+        <i class="iconRight <%= iconRight %> <%= rightExtraClass || '' %>" onclick="<%= rightFunction %>"></i>
+    <% } %>
+</header>

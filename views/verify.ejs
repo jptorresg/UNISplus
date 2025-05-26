@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar cuenta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class ="login-page">
+    <div class="form-container">
+        <h1>Verificación de cuenta</h1>
+        <p>Se envió un correo a la cuenta ingresada
+           (Revisa spam también) 
+        </p>
+        <form action="/verify" method="POST" class="verify-form">
+            <div class="input-group">
+                <input type="text" name="code" class ="input" required>
+                <label for="code" class="label">Código de verificación:</label>
+                <div class="line"></div>
+            </div>
+            <button type="submit" class="btn-submit">Verificar</button>
+        </form>
+
+        <% if (error) { %>
+            <p class="error-message"><%= error %></p>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Foro</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+
+    <%- include('partials/header', {
+        linkLeft: '/comunidad',
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        linkRight: '',
+        iconRight: 'fa-solid fa-check',
+        rightFunction: 'submitForm()',
+        rightExtraClass: ''
+    }) %>
+
+    <main class="content">
+        <form action="/foros/edit/<%= foro.id %>" method="POST" class="post-form" id="foro-form" enctype="multipart/form-data">
+            <input type="text" name="title" value="<%= foro.title %>" required class="input-text" style="margin-bottom: 10px;">
+        
+            <textarea name="description" class="input-text" style="margin-bottom: 10px;"><%= foro.description %></textarea>
+            
+            <label for="image-upload" class="image-upload-label">
+                <i class="fa-solid fa-image"></i> Cambiar imagen
+            </label>
+            <input type="file" id="image-upload" name="image" accept="image/*" class="input-file">
+            
+            <label for="isPrivate" class="checkbox-label">
+                <input type="checkbox" name="isPrivate" id="isPrivate" class="checkbox-input" <%= foro.is_private ? 'checked' : '' %>>
+                Foro privado
+            </label>
+        </form>        
+    </main>
+
+    <footer class="footer"></footer>
+
+</body>
+<script src="script.js"></script>
+<script>
+    function submitForm() {
+        document.getElementById('foro-form').submit();
+    }
+</script>
+</html>

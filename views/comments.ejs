@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+    <!-- incluir header -->
+    <%- include('partials/header', {
+        linkLeft: '/comunidad?foro=' + foroId,
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        leftExtraClass: '',
+        linkRight: '',
+        iconRight: '',
+        rightFunction: '',
+        rightExtraClass: ''
+    }) %>    
+    
+    <main class="content">
+
+        <div class="post">
+            <div class="post-header">
+                <img src="<%= post.profilePic %>" alt="Perfil" class="profile-pic">
+                <div>
+                    <h3 class="username"><%= post.user_name %></h3>
+                    <p class="post-date"><%= post.date %></p>
+                </div>
+            </div>
+
+            <p class="post-content">
+                <%= post.content %>
+            </p>
+
+            <% if (post.image) { %>
+                <div class="post-image">
+                    <img src="<%= post.image %>">
+                </div>
+            <% } %>
+
+            <div class="post-footer">
+                <button class="post-btn like-btn">
+                    <i class="<%= post.liked ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
+                    <span class="like-count"><%= post.likes %></span>
+                </button>
+            </div>
+        </div>
+
+        <h3 style="text-align:center; margin-top: 20px;">Comentarios</h3>
+
+        <form action="/comentar/<%= post.id %>" method="POST" class="comment-form" style="margin: 20px; display: flex; gap: 10px;">
+            <textarea name="content" placeholder="Escribe un comentario..." required 
+                      style="flex: 1; padding: 10px; border-radius: 8px; resize: none; min-height: 60px;"></textarea>
+            <button type="submit" class="btn" style="padding: 10px 15px; border-radius: 8px;">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+
+        <% if (comentarios.length === 0) { %>
+            <p style="text-align:center;">No hay comentarios aún.</p>
+        <% } %>
+
+        <% comentarios.forEach(comentario => { %>
+            <div class="post" style="background: #f9f9f9;">
+                <div class="post-header">
+                    <img src="<%= comentario.profilePic %>" alt="Perfil" class="profile-pic">
+                    <div>
+                        <h4 class="username"><%= comentario.user_name %></h4>
+                        <p class="post-date"><%= comentario.date %></p>
+                    </div>
+                </div>
+
+                <p class="post-content">
+                    <%= comentario.content %>
+                </p>
+
+                <div class="post-footer">
+                    <button class="post-btn comment-like-btn" data-id="<%= comentario.id %>">
+                        <i class="<%= comentario.liked ? 'fa-solid' : 'fa-regular' %> fa-thumbs-up"></i>
+                        <span class="like-count"><%= comentario.like_count %></span>
+                    </button>
+                    <% if (userId && userId === comentario.user_id) { %>
+                        <a href="/editComment/<%= comentario.id %>" class="post-btn" title="Editar">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a href="/deleteComment/<%= comentario.id %>" class="post-btn" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    <% } else if (isAdmin) { %>
+                        <a href="/deleteComment/<%= comentario.id %>" class="post-btn" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    <% } %>
+                </div>                
+                
+            </div>
+        <% }); %>
+    
+    </main>
+
+    <%- include('partials/footer.ejs') %>
+
+</body>
+<script src="/script.js"></script>
+</html>

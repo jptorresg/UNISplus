@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+    
+    <%- include('partials/header', { 
+        linkLeft: '/games', 
+        iconLeft: 'fa-solid fa-gamepad',
+        leftFunction: '', 
+        leftExtraClass: '',
+        linkRight: '', 
+        iconRight: 'fa-solid fa-magnifying-glass',
+        rightFunction: '',
+        rightExtraClass: ''
+    }) %>
+
+    <main class="content">
+        
+        <h1>Novedades</h1>
+        
+        <div class="carousel">
+            <button class="prev">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <% novedades.forEach(novedad => { %>
+                        <div class="carousel-item">
+                            <img src="/images/<%= novedad.image %>" alt="Imagen">
+                            <p><%= novedad.text %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+        
+        <h1>Favoritos</h1>
+
+        <div class="carousel">
+            <button class="prev">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <% favoritos.forEach(favorito => { %>
+                        <div class="carousel-item">
+                            <img src="<%= favorito.imagen %>" alt="Imagen">
+                            <p><%= favorito.descripcion %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </main>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+<script src="script.js"></script>
+</html>

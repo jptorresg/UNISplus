@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foros</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+
+    <%- include('partials/header', {
+        linkLeft: '/comunidad',
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        leftExtraClass: '',
+        linkRight: '',
+        iconRight: '',
+        rightFunction: '',
+        rightExtraClass: ''
+    }) %>
+    
+    <main class="content">
+
+        <h1>Foros</h1>
+
+        <div class="lista-foros">
+            <% foros.forEach(foro => { %>
+                <div class="foro-card">
+                    <img src="<%= foro.image %>" alt="icono" class="foro-icon">
+                    
+                    <div class="foro-text">
+                        <h2><%= foro.title %></h2>
+                        <p><%= foro.description %></p>
+                    </div>
+
+                    <div class="icon-btn">
+
+                        <form action="/foros/join/<%= foro.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn">
+                                <i class="fa fa-users"></i>
+                            </button>
+                        </form>
+                        
+                        <% if (isAdmin) { %>
+                            <a href="/foros/edit/<%= foro.id %>" class="btn" style="display:inline;">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            
+                            <form action="/foros/delete/<%= foro.id %>" method="POST" style="display:inline; margin-left: 2px;" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?')">
+                                <button type="submit" class="btn">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    </main>
+
+    <%- include('partials/footer.ejs') %>
+
+</body>
+<script src="script.js"></script>
+</html>

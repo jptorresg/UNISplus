@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+    
+    <%- include('partials/header', {
+        linkLeft: '/inicio',
+        iconLeft: 'fa-solid fa-chevron-left',
+        leftFunction: '',
+        linkRight: '',
+        iconRight: '',
+        rightFunction: ''
+    }) %>
+
+    <main class="content">
+
+        <div class="card" onclick="loadGame('/Games/1. Drum Game/index.html')">
+            <img src="/images/drum game image.jpg" alt="Imagen Drum Game" class="card-image">
+            <div class="card-content">
+                <p>Drum Game</p>
+            </div>
+        </div>
+    
+        <div class="card" onclick="loadGame('/Games/2. Simon dice!/index.html')">
+            <img src="/images/simon dice image.png" alt="Imagen Simon dice!" class="card-image">
+            <div class="card-content">
+                <p>Simón Dice!</p>
+            </div>
+        </div>
+    
+        <div class="card" onclick="loadGame('/Games/3. Dice Game/dicee.html')">
+            <img src="/images/dice game image.png" alt="Imagen Dice Game" class="card-image">
+            <div class="card-content">
+                <p>Dice Game</p>
+            </div>
+        </div>
+    
+    </main>
+    
+    <div id="game-modal" style="display: none;">
+        <div id="game-overlay">
+            <button id="close-game" onclick="closeGame()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <iframe id="game-frame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+<script src="/script.js"></script>
+</html>

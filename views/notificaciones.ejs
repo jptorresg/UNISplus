@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+    
+    <%- include('partials/header', {
+        linkLeft: '',
+        iconLeft: '',
+        leftFunction: '',
+        leftExtraClass: '',
+        linkRight: '',
+        iconRight: 'fa-solid fa-sliders',
+        rightFunction: '',
+        rightExtraClass: ''
+    }) %>
+
+    <main class="content">
+        <% if (notificaciones.length === 0) { %>
+            <p>No hay notificaciones recientes.</p>
+        <% } else { %>
+            <% notificaciones.forEach(n => { %>
+                <a href="/comunidad?foro=<%= n.foroId %>#post<%= n.postId %>" class="notification-link">
+                    <div class="notification">
+                        <div class="notification-header">
+                            <h4 class="notification-title"><%= n.autor %></h4>
+                            <span class="notification-time"><%= n.fecha_formateada %></span>
+                        </div>
+                        <% if (n.tipo === 'post') { %>
+                            <p class="notification-content">
+                                Ha publicado en <%= n.foro %>: <%= n.contenido %>
+                            </p>
+                        <% } else if (n.tipo === 'like') { %>
+                            <p class="notification-content">
+                                Le dio like a tu publicación en <%= n.foro %>
+                            </p>
+                        <% } else if (n.tipo === 'comentario') { %>
+                            <p class="notification-content">
+                                Comentó en tu publicación en <%= n.foro %>: <%= n.contenido %>
+                            </p>
+                        <% } %>
+                        <% if (n.tipo === 'like-comentario') { %>
+                            <p class="notification-content">
+                                Le dio like a tu <strong>comentario</strong> en <%= n.foro %>: <%= n.contenido %>
+                            </p>
+                        <% } %>                        
+                        <div class="notification-indicator"></div>
+                    </div>
+                </a>
+            <% }) %>
+        <% } %>
+    </main>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+<script src="script.js"></script>
+</html>
