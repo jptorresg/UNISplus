@@ -1,0 +1,43 @@
+:root{
+    --color1: #7a1111;
+    --color2: #862633;
+    --color3: #5a0e0e;
+}
+
+/* Estilos de body para cada tipo de página */
+body.login-page {
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body.dashboard-page {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/*  Estilo de mensaje de error */
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Estilo de texto h1 */
+h1 {
+    color:var(--color3);
+    margin-top: 15px;
+    margin-bottom: 10px;
+}

@@ -32,6 +32,7 @@ import upload from "../middleware/multerConfig.js";
 const router = express.Router();
 
 router.get('/comunidad', requireLogin, renderComunidad);
+
 router.get('/post/:id/comments', requireLogin, renderComments);
 router.post('/comentar/:postId', requireLogin, addComment);
 router.get('/editComment/:commentId', requireLogin, renderEditComment);

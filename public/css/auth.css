@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container, .login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.input-group {
+  position: relative;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 10px 5px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+}
+
+.input-group label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 14px;
+  color: #777;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  font-size: 12px;
+  color: var(--color2);
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background: var(--color2);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.input-group input:focus ~ .line {
+  transform: scaleX(1);
+}
+
+/* === BUTTONS === */
+.btn, .btn-submit {
+  background: var(--color2);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn:hover, .btn-submit:hover {
+  background: var(--color3);
+}
+
+/* === LINKS === */
+a {
+  color: var(--color1);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.remember-forgot, .terms, .login-link, .register-link {
+  font-size: 14px;
+}
+
+.password-requirements {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    color: #555;
+}

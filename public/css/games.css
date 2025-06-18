@@ -1,0 +1,68 @@
+/* Estilos para las cartas de juegos */
+.card {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--color1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.card-image {
+    background-color: white;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+    font-size: 14px;
+    background-color: var(--color1);
+    color: white;
+    text-decoration: none;
+}
+
+#game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#game-overlay {
+    position: relative;
+    width: 95%;
+    height: 90%;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+#game-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#close-game {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+    border: none;
+    border-radius: 50%;
+    padding: 8px 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

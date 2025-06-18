@@ -1,0 +1,71 @@
+/* Estilos del header general */
+header {
+    background-color: var(--color1);
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.iconRight {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.iconLeft {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Canva en blanco para el contenido */
+.content{
+    margin-top: 75px;
+    margin-bottom: 57px;
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 100px);
+    width: 100%;
+    background-color: white;
+}
+
+/* Estilos para el footer */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 57px;
+    background-color: var(--color1);
+    padding: 15px 0;
+}
+
+.footer-item {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}

@@ -48,11 +48,11 @@ app.use('/uploads', express.static('uploads'));
 app.use(attachUsernameToViews);
 
 app.use('/', authRoutes);
-app.use('/inicio', inicioRoutes);
-app.use('/informacion', informacionRoutes);
-app.use('/comunidad', comunidadRoutes);
-app.use('/notificaciones', notificacionRoutes);
-app.use('/perfil', perfilRoutes);
+app.use('/', inicioRoutes);
+app.use('/', informacionRoutes);
+app.use('/', comunidadRoutes);
+app.use('/', notificacionRoutes);
+app.use('/', perfilRoutes);
 
 // iniciar el servidor
 app.listen(PORT, '0.0.0.0', () => {

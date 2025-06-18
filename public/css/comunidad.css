@@ -1,0 +1,172 @@
+/* Subheader para el foro actual .mejorar...............................................................................*/
+.subheader {
+    position: relative;
+    width: 100%;
+    background-color: var(--color1);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.subheader-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.foro-image {
+    width: 60px;
+    height: 60px;
+    border-radius:50%;
+    object-fit: cover;
+}
+
+.subheader h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.subheader p {
+    margin: 0;
+    font-size: 14px;
+    color: #f0eaea;
+}
+
+.star-icon, .exit-icon {
+    position: absolute;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.star-icon {
+    left: 10px;
+    color: white;
+}
+
+.exit-icon {
+    right: 10px;
+    color: white;
+}
+
+/* Estilos para nuevos comentarios */
+.comment-form textarea {
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.comment-form .btn {
+    background-color: var(--color1);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-form .btn:hover {
+    background-color: var(--color3);
+}
+
+/* Estilos para el menu desplegable / slidemenu */
+.slide-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: var(--color1);
+    color: white;
+    transition: left 0.3s ease-in-out;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.slide-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0;
+}
+
+.slide-menu ul li {
+    margin: 15px 0;
+}
+
+.slide-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.slide-menu.active {
+    left: 0;
+}
+
+.slide-menu ul ul {
+    margin: 0;
+    padding-left: 15px;
+}
+
+.foro-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+/* Estilos para el boton de crear post y crear foro */
+.newPostBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px; 
+    background-color: var(--color1);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.newForoBtn {
+    position: fixed;
+    bottom: 145px;
+    right: 20px;
+    width: 40px;
+    height: 40px; 
+    background-color: var(--color1);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out;
+    text-decoration: none;
+}
