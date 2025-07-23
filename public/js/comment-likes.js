@@ -1,7 +1,5 @@
 // script para likes en comentarios
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Buscando botones de like");
-    console.log(document.querySelectorAll('.comment-like-btn'));
 
     const likeButtons = document.querySelectorAll('.comment-like-btn');
 

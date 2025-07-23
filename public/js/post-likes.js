@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = btn.querySelector('i');
 
             try {
-                const response = await fetch(`/posts/${postId}/like`, {
+                const response = await fetch(`/post/${postId}/like`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

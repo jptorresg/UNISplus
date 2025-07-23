@@ -137,7 +137,7 @@ export const deletePost = async (req, res) => {
 }
 
 export const likePost = async (req, res) => {
-   const { postId } = req.params;
+    const postId = parseInt(req.params.id);
     const userId = req.session.userId;
 
     try {
@@ -168,6 +168,6 @@ export const likePost = async (req, res) => {
         res.json({ likes });
     } catch (error) {
         console.error('Error al dar/retirar like:', error);
-        res.status(500).send('Error con el like');
+        res.status(500).json({ success: false, message: "Error con el like" });
     }
 }
