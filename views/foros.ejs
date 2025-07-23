@@ -30,7 +30,7 @@
         <div class="lista-foros">
             <% foros.forEach(foro => { %>
                 <div class="foro-card">
-                    <img src="<%= foro.image %>" alt="icono" class="foro-icon">
+                    <img src="/images/foros<%= foro.image %>" alt="icono" class="foro-icon"> <!-- Cambia la ruta de la imagen desde la base de datos -->
                     
                     <div class="foro-text">
                         <h2><%= foro.title %></h2>
@@ -66,5 +66,4 @@
     <%- include('partials/footer.ejs') %>
 
 </body>
-<script src="script.js"></script>
 </html>

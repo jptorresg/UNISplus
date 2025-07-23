@@ -41,7 +41,7 @@
                       ? foroActual.image
                       : '/images/' + foroActual.image;
                   %>
-                  <img src="<%= rutaImagen %>" alt="Foro" class="foro-image">
+                  <img src="/images/foros<%= rutaImagen %>" alt="Foro" class="foro-image"> <!-- Cambia la ruta de la imagen desde la base de datos -->
                     <div>
                         <h2><%= foroActual.title %></h2>
                         <p><%= foroActual.description || 'Sin descripción' %></p>
@@ -70,7 +70,7 @@
                         <% forosPopulares.forEach(foro => { %>
                             <li>
                                 <a href="/comunidad?foro=<%= foro.id %>">
-                                    <img src="/images/<%= foro.image %>" alt="icono" class="foro-icon">
+                                    <img src="/images/foros/<%= foro.image %>" alt="icono" class="foro-icon">
                                     <%= foro.title %>
                                 </a>
                             </li>
@@ -144,5 +144,6 @@
     <%- include ('partials/footer.ejs') %>
 
 </body>
-<script src="script.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/post-likes.js"></script>
 </html>

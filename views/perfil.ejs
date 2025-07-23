@@ -26,11 +26,11 @@
         <div class="profile-card">
             <div 
                 class="background-image"
-                style="background-image: url('<%= user.background_pic ? ('/uploads/' + user.background_pic) : '/images/background_default_image.png' %>');" 
+                style="background-image: url('<%= user.background_pic ? ('/uploads/' + user.background_pic) : '/images/default/background_default_image.png' %>');" 
             ></div>
             <div class="profile-info">
                 <img 
-                    src="<%= user.profile_pic ? ('/uploads/' + user.profile_pic) : '/images/default_profile_image.jpg' %>" 
+                    src="<%= user.profile_pic ? ('/uploads/' + user.profile_pic) : '/images/default/default_profile_image.jpg' %>" 
                     alt="Foto de perfil" 
                     class="profile-profile-pic"
                 >
@@ -69,5 +69,4 @@
     <%- include ('partials/footer.ejs') %>
 
 </body>
-<script src="/script.js"></script>
 </html>
