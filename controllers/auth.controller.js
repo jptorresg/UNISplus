@@ -70,9 +70,11 @@ export const register = async (req, res) => {
     const hashedCode = await hashPassword(code);
 
     await db.query(`
-      INSERT INTO users (username, password_hash, name, is_verified, verification_code_hash)
-      VALUES ($1, $2, $3, FALSE, $4)
-    `, [username, hashedPassword, name, hashedCode]);
+      INSERT INTO users (username, password_hash, name, is_verified, verification_code_hash, profile_pic, background_pic, description)
+      VALUES ($1, $2, $3, FALSE, $4, $5, $6, $7)
+    `, [username, hashedPassword, name, hashedCode, 'default_profile_image.png', 'background_default_image.png', 'Sin descripción todavía']);
+    // Verificar si solamente el nombre de la imagen basta o es necesario colocar la ruta -> ¿que ruta se coloca entonces? 
+    // Queda pendiente entonces el cambiar las imágenes de los usuarios exsitentes en la bd, una vez establecido el valor, ej.: UPDATE users SET profile_image = 'default_profile.jpg' WHERE profile_image IS NULL;
 
     const exito = await enviarCodigoVerificacion(username, name, code);
     if (!exito) {
