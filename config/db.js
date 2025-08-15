@@ -8,7 +8,7 @@ const connectionString = process.env.DATABASE_URL;
 
 const db = new pg.Client({
   connectionString,
-  ssl: { rejectUnauthorized: false } // Render necesita SSL
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false
 });
 
 export default db;
